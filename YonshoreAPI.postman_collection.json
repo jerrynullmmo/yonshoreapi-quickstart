@@ -1,0 +1,36 @@
+{
+  "info": {
+    "name": "YonshoreAPI Quickstart",
+    "description": "OpenAI-compatible YonshoreAPI request. Confirm regional eligibility and select a current model from https://api.yonshore.com/api/pricing before use.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "https://api.yonshore.com/v1", "type": "string"},
+    {"key": "apiKey", "value": "", "type": "secret"},
+    {"key": "model", "value": "replace-with-a-current-public-model", "type": "string"}
+  ],
+  "item": [
+    {
+      "name": "Chat completion",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{apiKey}}", "type": "text"},
+          {"key": "Content-Type", "value": "application/json", "type": "text"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"{{model}}\",\n  \"messages\": [\n    {\"role\": \"user\", \"content\": \"Reply with OK\"}\n  ],\n  \"max_tokens\": 16\n}",
+          "options": {"raw": {"language": "json"}}
+        },
+        "url": {
+          "raw": "{{baseUrl}}/chat/completions",
+          "host": ["{{baseUrl}}"],
+          "path": ["chat", "completions"]
+        },
+        "description": "Uses a secret collection variable for the API key. Never commit a real key."
+      },
+      "response": []
+    }
+  ]
+}
