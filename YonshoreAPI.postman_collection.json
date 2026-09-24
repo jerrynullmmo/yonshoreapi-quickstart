@@ -1,34 +1,106 @@
 {
   "info": {
     "name": "YonshoreAPI Quickstart",
-    "description": "OpenAI-compatible YonshoreAPI request. Confirm regional eligibility and select a current model from https://api.yonshore.com/api/pricing before use.",
+    "description": "Quickstart for YonshoreAPI. Choose the model and its supported endpoint from https://api.yonshore.com/api/pricing. Claude currently supports Chat Completions; GPT currently uses Responses. Keep your API key private and never publish populated credentials. Model and endpoint examples checked 2026-09-24.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    {"key": "baseUrl", "value": "https://api.yonshore.com/v1", "type": "string"},
-    {"key": "apiKey", "value": "", "type": "secret"},
-    {"key": "model", "value": "replace-with-a-current-public-model", "type": "string"}
+    {
+      "key": "baseUrl",
+      "value": "https://api.yonshore.com/v1",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "secret"
+    },
+    {
+      "key": "claudeModel",
+      "value": "claude-haiku-4-5-20251001",
+      "type": "string"
+    },
+    {
+      "key": "gptModel",
+      "value": "gpt-5.6-sol",
+      "type": "string"
+    }
   ],
   "item": [
     {
-      "name": "Chat completion",
+      "name": "Claude: Chat completion",
       "request": {
         "method": "POST",
         "header": [
-          {"key": "Authorization", "value": "Bearer {{apiKey}}", "type": "text"},
-          {"key": "Content-Type", "value": "application/json", "type": "text"}
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"model\": \"{{model}}\",\n  \"messages\": [\n    {\"role\": \"user\", \"content\": \"Reply with OK\"}\n  ],\n  \"max_tokens\": 16\n}",
-          "options": {"raw": {"language": "json"}}
+          "raw": "{\n  \"model\": \"{{claudeModel}}\",\n  \"messages\": [\n    {\"role\": \"user\", \"content\": \"Reply with OK\"}\n  ],\n  \"max_tokens\": 16\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
         "url": {
           "raw": "{{baseUrl}}/chat/completions",
-          "host": ["{{baseUrl}}"],
-          "path": ["chat", "completions"]
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "chat",
+            "completions"
+          ]
         },
-        "description": "Uses a secret collection variable for the API key. Never commit a real key."
+        "description": "Use only with a model whose supported_endpoint_types includes openai. The example Claude model was checked 2026-09-24. Uses a secret collection variable for the API key; never commit a real key. Sending consumes account balance."
+      },
+      "response": []
+    },
+    {
+      "name": "GPT: Response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"{{gptModel}}\",\n  \"input\": \"Reply with OK\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/responses",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "responses"
+          ]
+        },
+        "description": "Use only with a model whose supported_endpoint_types includes openai-response. The example GPT model was checked 2026-09-24. Sending consumes account balance."
       },
       "response": []
     }
