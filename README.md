@@ -5,7 +5,7 @@ YonshoreAPI exposes an OpenAI-compatible API for developers in supported regions
 ## Before you start
 
 1. Confirm that both YonshoreAPI and the relevant upstream provider support your location and use case.
-2. Create an account at <https://api.yonshore.com/register>.
+2. Create an account at <https://api.yonshore.com/sign-up?utm_source=github_quickstart&utm_medium=readme&utm_campaign=first_call_guide>.
 3. Create an API key in the dashboard.
 4. Select a current model and its supported endpoint from <https://api.yonshore.com/api/pricing>.
 5. Confirm that the account has usable balance. Recharge in the dashboard only if needed; model calls are paid usage.
