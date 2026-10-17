@@ -1,6 +1,16 @@
-# YonshoreAPI Quickstart
+# YonShoreAPI Quickstart
 
-YonshoreAPI exposes an OpenAI-compatible API for developers in supported regions.
+YonShoreAPI exposes an OpenAI-compatible API for developers in supported regions.
+
+## Referral commission and support
+
+YonShoreAPI is Jerry's personally operated website. The current referral batch offers a permanent **5% cash commission on referred users' settled, paid model usage**. A referred user must register through your wallet's invite link and bind the referral relationship; that registration locks the batch terms. Later batches do not change those locked terms.
+
+Gift credits and unsettled usage do not earn commission. Refunds, reversals and corrections reduce the corresponding commission; historical usage before activation is not included. Gift credits are separate from cash commission.
+
+Withdrawal applications are open and are reviewed and paid manually. Check your wallet or use the [withdrawal ticket form](https://api.yonshore.com/support?category=withdrawal); the site obtains or creates the withdrawal number. Submit your own payment QR code privately in your ticket. Payment is not automatic or instant, and withdrawals pause during billing disputes.
+
+The [support center](https://api.yonshore.com/support) accepts pasted images and lets you select your own recharge orders or usage records. Never include passwords or API keys in screenshots. See the [site announcement](https://api.yonshore.com/) for the full current terms.
 
 ## Before you start
 
@@ -14,7 +24,7 @@ YonshoreAPI is currently unavailable in mainland China. Do not use a proxy, VPN,
 
 ## Choose the matching endpoint
 
-The public pricing response lists `supported_endpoint_types` for each model. Claude models currently list `openai` (Chat Completions) and `anthropic` (Messages). GPT models currently list `openai-response` (Responses). Do not send a GPT model to `/v1/chat/completions` just because both APIs use an OpenAI-style key.
+The public pricing response lists `supported_endpoint_types` for each model. On 2026-10-17, `claude-haiku-4-5-20251001` lists `openai` (Chat Completions) and `anthropic` (Messages), while `gpt-5.6-sol` lists `openai-response` (Responses). Other GPT entries, including `gpt-6.1-sol`, list `openai` (Chat Completions). Select the endpoint for the exact model; the family name alone does not determine the request format.
 
 ## curl: Claude via Chat Completions
 
@@ -53,7 +63,7 @@ curl "$OPENAI_BASE_URL/responses" \
   }'
 ```
 
-Check that the response completed and contains output text and usage. The model names and endpoint mapping above were checked on 2026-09-24; consult the live pricing response before using a different model.
+Check that the response completed and contains output text and usage. The model names and endpoint mapping above were checked on 2026-10-17; consult the live pricing response before using a different model.
 
 ## Python: Claude via Chat Completions
 
@@ -82,7 +92,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-For a GPT model, use `client.responses.create(model="gpt-5.6-sol", input="Reply with OK")` and read `response.output_text`.
+For the example `gpt-5.6-sol` model, use `client.responses.create(model="gpt-5.6-sol", input="Reply with OK")` and read `response.output_text`.
 
 ## Node.js: Claude via Chat Completions
 
@@ -111,7 +121,7 @@ const response = await client.chat.completions.create({
 console.log(response.choices[0].message.content);
 ```
 
-For a GPT model, use `client.responses.create({ model: "gpt-5.6-sol", input: "Reply with OK" })` and read `response.output_text`.
+For the example `gpt-5.6-sol` model, use `client.responses.create({ model: "gpt-5.6-sol", input: "Reply with OK" })` and read `response.output_text`.
 
 ## Common failures
 
